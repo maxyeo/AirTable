@@ -52,4 +52,9 @@ public class Mix {
     		this.clip2.start();
     	}
     }
+    
+    void mute() {
+    	this.clip1.stop();
+    	this.clip2.stop();
+    }
 }

@@ -39,6 +39,8 @@ public class GuiPanel extends JPanel {
 			            GuiPanel.this.mix.start();
 			        } else {
 			            mode = "music";
+			            GuiPanel.this.mix.mute();
+			            GuiPanel.this.music.play();
 			        }
 			    }
 			    
@@ -49,7 +51,7 @@ public class GuiPanel extends JPanel {
     				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Down")) {
     					GuiPanel.this.music.moveDown();
     					
-    				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Space")) {
+    				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("H")) {
     					GuiPanel.this.music.mute();
     					
     				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Right")) {
@@ -75,6 +77,7 @@ public class GuiPanel extends JPanel {
     					
     				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("O")) {
     					GuiPanel.this.music.play();
+    					//GuiPanel.this.music.mute();
     					
     				} 
 			    } else if (mode.equals("mix")) {
@@ -88,7 +91,7 @@ public class GuiPanel extends JPanel {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (mode.equals("music")) {
-					if (KeyEvent.getKeyText(e.getKeyCode()).equals("Space")) {
+					if (KeyEvent.getKeyText(e.getKeyCode()).equals("H")) {
 						GuiPanel.this.music.play();
 						
 					}
