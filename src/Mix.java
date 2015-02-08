@@ -3,6 +3,7 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 
 /**Audio files generated from http://onlinetonegenerator.com/
  * 
@@ -19,7 +20,13 @@ public class Mix {
     boolean started = false;
     
     public Mix() {
-        //this.load();
+    	
+    	try {
+			this.clip2 = AudioSystem.getClip();
+			this.clip1 = AudioSystem.getClip();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
     }
     
     void start() {
@@ -46,7 +53,6 @@ public class Mix {
 	            System.err.println(e.getMessage());
 	        }
     	} else {
-    		System.out.println("lets goo");
     		this.clip2.stop();
     		this.clip2.setFramePosition(0);
     		this.clip2.start();

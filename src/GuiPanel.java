@@ -1,3 +1,6 @@
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -12,18 +15,33 @@ public class GuiPanel extends JPanel {
 	Mix mix;
 	String mode;
 	
+	JLabel theMode;
+	
 	public GuiPanel() {
 		
-
-		ImageIcon icon = new ImageIcon("Images"+File.separator+"logo.jpg"); 
+		setLayout(new BorderLayout());
+		
+		JPanel top = new JPanel();
+		top.setLayout(new BorderLayout());
+		
+	    mode = "music";
+	    theMode = new JLabel();
+	    theMode.setText("Mode: " + mode+"  ");
+	    top.add(theMode, BorderLayout.EAST);
+	    
+	    JLabel title = new JLabel();
+	    title.setFont(new Font("Calibri", Font.PLAIN, 40));
+	    
+	    title.setText("  AirTable");
+	    top.add(title, BorderLayout.WEST);
+	    add(top, BorderLayout.NORTH);
+	    
+	    ImageIcon icon = new ImageIcon("Images"+File.separator+"logo.jpg"); 
 		JLabel thumb = new JLabel();
 		thumb.setIcon(icon);
-		add(thumb);
+		add(thumb, BorderLayout.CENTER);
 		
-
-	    mode = "music";
 	    
-
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -42,6 +60,7 @@ public class GuiPanel extends JPanel {
 			            GuiPanel.this.mix.mute();
 			            GuiPanel.this.music.play();
 			        }
+			        GuiPanel.this.updateMode();
 			    }
 			    
 			    if (mode.equals("music")) {
@@ -77,13 +96,11 @@ public class GuiPanel extends JPanel {
     					
     				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("P")) {
     					GuiPanel.this.music.play();
-    					//GuiPanel.this.music.mute();
     					
     				} 
 			    } else if (mode.equals("mix")) {
 			        if (KeyEvent.getKeyText(e.getKeyCode()).equals("Space")) {
 			            GuiPanel.this.mix.back();
-			            System.out.println("yo");
 			        }
 			    }
 			}
@@ -101,5 +118,10 @@ public class GuiPanel extends JPanel {
 		setFocusable(true);
 		music = new Music();
 		mix = new Mix();
+	}
+	
+	void updateMode() {
+		theMode.setText("Mode: " + mode+"  ");
+		
 	}
 }
