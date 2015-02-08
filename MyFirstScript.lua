@@ -51,6 +51,8 @@ end
         onFist(keyEdge)
     elseif (pose == "fingersSpread") then
         onFingersSpread(keyEdge)
+	elseif (pose == "doubleTap") then
+		onDoubleTap(keyEdge)
     end
 
 	if (pose == "waveIn" and math.abs(currentRoll - initialRoll) < 1.3) then
@@ -130,6 +132,12 @@ function onFingersSpread(keyEdge)
     myo.debug("Escape")
 	--myo.vibrate("long")
     myo.keyboard("escape", keyEdge)
+end
+
+function onDoubleTap(keyEdge)
+	myo.debug("start")
+	--myo.vibrate("long")
+    myo.keyboard("o", keyEdge)
 end
 
 
