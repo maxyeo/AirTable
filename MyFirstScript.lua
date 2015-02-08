@@ -3,8 +3,10 @@ scriptTitle = "My First Script"
 scriptDetailsUrl = ""
 
 prevPitch = myo.getPitch()
-prevRoll = myo.getRoll()
-prevYaw = myo.getYaw()
+prevRoll = 0.9
+prevYaw = -1
+--prevRoll = myo.getRoll()
+--prevYaw = myo.getYaw()
 initialRoll = myo.getRoll()
 
 function onForegroundWindowChange(app, title)
@@ -55,7 +57,7 @@ end
 		onDoubleTap(keyEdge)
     end
 
-	if (pose == "waveIn" and math.abs(currentRoll - initialRoll) < 1.3) then
+	if (pose == "waveIn" and math.abs(currentRoll - initialRoll) < 0.8) then
 		myo.keyboard("s", "press")
 		myo.vibrate("short")
         myo.debug("~~~~~~~~~~~~~drop the bass~~~~~~~~~~~")
@@ -72,9 +74,13 @@ function onPeriodic()
 	currentRoll = myo.getRoll()
 	currentYaw = myo.getYaw()
 	
+	--myo.debug("current pitch: " .. currentPitch)
+	--myo.debug("current roll: " .. currentRoll)
+	--myo.debug("current yaw: " .. currentYaw)
+	
 	local deltaPitch = currentPitch - prevPitch
 	local deltaYaw = currentYaw - prevYaw
-	local deltaRoll = currentRoll - prevRoll
+	local deltaRoll = currentRoll - prevRoll 
 	
 	if (deltaPitch > 0.108 and deltaPitch < 0.216) then
 		myo.keyboard("up_arrow", "press")
@@ -131,13 +137,13 @@ end
 function onFingersSpread(keyEdge)
     myo.debug("Escape")
 	--myo.vibrate("long")
-    myo.keyboard("escape", keyEdge)
+    myo.keyboard("h", keyEdge)
 end
 
 function onDoubleTap(keyEdge)
 	myo.debug("start")
 	--myo.vibrate("long")
-    myo.keyboard("o", keyEdge)
+    myo.keyboard("p", keyEdge)
 end
 
 
