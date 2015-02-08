@@ -5,7 +5,8 @@ scriptDetailsUrl = ""
 prevPitch = myo.getPitch()
 prevRoll = myo.getRoll()
 prevYaw = myo.getYaw()
- 
+initialRoll = myo.getRoll()
+
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
 	local titleMatch = string.match(title, "Music Stuffs") ~= nil;
@@ -53,9 +54,9 @@ end
         onFingersSpread(keyEdge)
     end
 
-	if (pose == "waveIn" and currentRoll < 0.65) then
+	if (pose == "waveIn" and math.abs(currentRoll - initialRoll) < 1.3) then
 		myo.keyboard("s", "press")
-        myo.debug("drop the bass~~~~~~~~~~~")
+        myo.debug("~~~~~~~~~~~~~drop the bass~~~~~~~~~~~")
     end
 	
 end
