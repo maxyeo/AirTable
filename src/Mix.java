@@ -16,12 +16,13 @@ public class Mix {
     private AudioInputStream inputStream1;
     private Clip clip2;
     private AudioInputStream inputStream2;
+    boolean started = false;
     
     public Mix() {
-        this.load();
+        //this.load();
     }
     
-    private void load() {
+    void start() {
         try {
             this.clip1 = AudioSystem.getClip();
             this.inputStream1 = AudioSystem.getAudioInputStream(new File("Music"+File.separator+"sil.wav"));
@@ -33,13 +34,22 @@ public class Mix {
     }
 
     void back() {
-        try {
-            this.clip2 = AudioSystem.getClip();
-            this.inputStream2 = AudioSystem.getAudioInputStream(new File("Music"+File.separator+"sil2.wav"));
-            this.clip2.open(inputStream2);
-            this.clip2.start();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+    	this.clip1.stop();
+    	if (!started) {
+	        try {
+	            this.clip2 = AudioSystem.getClip();
+	            this.inputStream2 = AudioSystem.getAudioInputStream(new File("Music"+File.separator+"sil2.wav"));
+	            this.clip2.open(inputStream2);
+	            this.clip2.start();
+	            started = true;
+	        } catch (Exception e) {
+	            System.err.println(e.getMessage());
+	        }
+    	} else {
+    		System.out.println("lets goo");
+    		this.clip2.stop();
+    		this.clip2.setFramePosition(0);
+    		this.clip2.start();
+    	}
     }
 }
