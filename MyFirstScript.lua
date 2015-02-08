@@ -40,7 +40,6 @@ function onPoseEdge(pose, edge)
 end
 
 	currentRoll = myo.getRoll()
-    myo.debug("current roll here #$%^&*()*)&(*^" .. currentRoll)
 
     if (pose == "waveOut") then
 	    myo.unlock("hold")
@@ -56,6 +55,7 @@ end
 
 	if (pose == "waveIn" and math.abs(currentRoll - initialRoll) < 1.3) then
 		myo.keyboard("s", "press")
+		myo.vibrate("short")
         myo.debug("~~~~~~~~~~~~~drop the bass~~~~~~~~~~~")
     end
 	
@@ -69,12 +69,7 @@ function onPeriodic()
 	currentPitch = myo.getPitch()
 	currentRoll = myo.getRoll()
 	currentYaw = myo.getYaw()
-   -- myo.debug("pre roll" .. prevRoll)
-    --myo.debug("currnent rooll" .. currentRoll)
-
 	
-	
-	--myo.debug("currentYaw "..currentYaw)
 	local deltaPitch = currentPitch - prevPitch
 	local deltaYaw = currentYaw - prevYaw
 	local deltaRoll = currentRoll - prevRoll
@@ -120,15 +115,13 @@ end
  
 function onWaveIn(keyEdge)
     myo.debug("Previous")
-    myo.vibrate("short")
     --myo.vibrate("short")
     myo.keyboard("1",keyEdge)
 end
  
  
 function onFist(keyEdge)
-
-    myo.debug("Enter")  
+    myo.debug("Mute")  
     --myo.vibrate("medium")
     myo.keyboard("space",keyEdge)
 end
@@ -137,7 +130,6 @@ function onFingersSpread(keyEdge)
     myo.debug("Escape")
 	--myo.vibrate("long")
     myo.keyboard("escape", keyEdge)
-		
 end
 
 
