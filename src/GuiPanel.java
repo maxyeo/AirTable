@@ -1,6 +1,9 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -8,6 +11,11 @@ public class GuiPanel extends JPanel {
 	Music music;
 	
 	public GuiPanel() {
+		
+		ImageIcon icon = new ImageIcon("Images"+File.separator+"logo.jpg"); 
+		JLabel thumb = new JLabel();
+		thumb.setIcon(icon);
+		add(thumb);
 		
 		addKeyListener(new KeyListener() {
 			@Override
