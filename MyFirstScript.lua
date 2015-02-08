@@ -9,7 +9,7 @@ initialRoll = myo.getRoll()
 
 function onForegroundWindowChange(app, title)
 	myo.debug("onForegroundWindowChange: " .. app .. ", " .. title)
-	local titleMatch = string.match(title, "Music Stuffs") ~= nil;
+	local titleMatch = string.match(title, "AirTable") ~= nil;
     myo.debug("Music: "  .. tostring(titleMatch))
     if (titleMatch) then
         myo.setLockingPolicy("none")
