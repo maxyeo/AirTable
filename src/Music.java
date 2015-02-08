@@ -44,9 +44,9 @@ public class Music {
 		this.drums = new ArrayList<File>();
 		this.fastDrums= new ArrayList<File>();
 		this.currentBeat = 0;
-		this.load();
 		this.isFastPlaying = false;
-		this.isMute = false;
+		this.isMute = true;
+		this.load();
 	}
 	
 	private void load() {

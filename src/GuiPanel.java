@@ -47,6 +47,9 @@ public class GuiPanel extends JPanel {
 				}  else if (KeyEvent.getKeyText(e.getKeyCode()).equals("2")) {
 					GuiPanel.this.music.nextDrum();
 					
+				} else if (KeyEvent.getKeyText(e.getKeyCode()).equals("O")) {
+					GuiPanel.this.music.play();
+					
 				} 
 			}
 	
