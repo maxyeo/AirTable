@@ -225,7 +225,7 @@ public class Music {
 		}
 		resetDrum();
 	}
-	
+	 
 	void prevDrum() {
 		this.currentDrum -= 1;
 		if (this.currentDrum < 0) {
